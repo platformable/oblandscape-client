@@ -22,7 +22,6 @@ export default function CompanyCard({ company }: CompanyCardProps) {
 
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-4 flex flex-col gap-3">
-      {/* Header: logo, name, type badge */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
           {company.logo ? (

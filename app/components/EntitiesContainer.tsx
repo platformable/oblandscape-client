@@ -17,7 +17,7 @@ export default function EntitiesContainer() {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ["entities", filters], // Se recarga cuando cambian los filtros
+      queryKey: ["entities", filters],
       queryFn: async ({ pageParam = 1 }) => {
         const queryParams = new URLSearchParams({
           page: String(pageParam),
@@ -27,7 +27,6 @@ export default function EntitiesContainer() {
           ...(filters.subcategories.length > 0 && {
             subcategory: filters.subcategories.join(","),
           }),
-          // ... agrega el resto de filtros aquí
         })
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_SERVER_URL}/api/entities?${queryParams}`,
@@ -41,48 +40,55 @@ export default function EntitiesContainer() {
       initialPageParam: 1,
     })
 
-  console.log("queryParams", filters)
-
   const allRows = data ? data.pages.flatMap((page) => page.data) : []
 
-  // 2. Lógica para Grid de 2 columnas
-  // Dividimos los datos en grupos de 2 para la virtualización
+  const filteredRows =
+    filters.subcategories.length > 0
+      ? allRows.filter((company) =>
+          filters.subcategories.includes(company.Subcategory),
+        )
+      : allRows
+
   const itemsPerRow = 2
-  const rowCount = Math.ceil(allRows.length / itemsPerRow)
+  const rowCount = Math.ceil(filteredRows.length / itemsPerRow)
 
   const parentRef = useRef<HTMLDivElement>(null)
 
   const rowVirtualizer = useVirtualizer({
     count: hasNextPage ? rowCount + 1 : rowCount,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 220, // Altura estimada de tu CompanyCard + gap
+    estimateSize: () => 220,
     overscan: 5,
   })
 
   const virtualItems = rowVirtualizer.getVirtualItems()
 
-  // 3. Trigger de scroll infinito
-  useEffect(() => {
-    const lastItem = virtualItems[virtualItems.length - 1]
-    if (!lastItem) return
+  useEffect(
+    function infiniteScrollTrigger() {
+      const lastItem = virtualItems[virtualItems.length - 1]
+      if (!lastItem) return
 
-    if (lastItem.index >= rowCount - 1 && hasNextPage && !isFetchingNextPage) {
-      fetchNextPage()
-    }
-  }, [hasNextPage, fetchNextPage, rowCount, isFetchingNextPage, virtualItems])
+      if (
+        lastItem.index >= rowCount - 1 &&
+        hasNextPage &&
+        !isFetchingNextPage
+      ) {
+        fetchNextPage()
+      }
+    },
+    [hasNextPage, fetchNextPage, rowCount, isFetchingNextPage, virtualItems],
+  )
 
   return (
     <main className=" py-8">
       <div className="container mx-auto px-4 flex flex-col md:flex-row gap-6 ">
         <FilterSidebar filters={filters} onChange={setFilters} />
 
-        {/* CONTENEDOR PRINCIPAL CON SCROLL */}
         <section
           ref={parentRef}
           className="flex-1 overflow-auto bg-white rounded-lg shadow-inner p-4"
           id="scrollable-container"
         >
-          {/* DIV RELATIVO CON ALTURA TOTAL */}
           <div
             style={{
               // height: `${rowVirtualizer.getTotalSize()}px`,
@@ -93,9 +99,9 @@ export default function EntitiesContainer() {
           >
             {virtualItems?.map((virtualRow) => {
               const isLoaderRow = virtualRow.index > rowCount - 1
-              // Calculamos qué items van en esta fila
+
               const startIndex = virtualRow.index * itemsPerRow
-              const rowItems = allRows.slice(
+              const rowItems = filteredRows.slice(
                 startIndex,
                 startIndex + itemsPerRow,
               )
@@ -111,7 +117,7 @@ export default function EntitiesContainer() {
                     width: "100%",
                     transform: `translateY(${virtualRow.start}px)`,
                     //transform: `translateY(120px)`,
-                    paddingBottom: "16px", // Espaciado entre filas
+                    paddingBottom: "16px",
                   }}
                 >
                   {isLoaderRow ? (
@@ -126,7 +132,7 @@ export default function EntitiesContainer() {
             })}
           </div>
 
-          {allRows.length === 0 && !isFetchingNextPage && (
+          {filteredRows.length === 0 && !isFetchingNextPage && (
             <p className="text-gray-400 text-center py-10">
               No companies found.
             </p>

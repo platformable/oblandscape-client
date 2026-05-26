@@ -341,7 +341,10 @@ export default function FilterSidebar({
                               const next = filters.subcategories.includes(sub)
                                 ? filters.subcategories.filter((s) => s !== sub)
                                 : [...filters.subcategories, sub]
-                              set({ subcategories: next })
+                              set({
+                                subcategories: next,
+                                types: next.length > 0 ? ["Fintech"] : [],
+                              })
                             }}
                             className={`text-xs font-medium px-3 py-1 rounded-full border transition-colors ${
                               filters.subcategories.includes(sub)

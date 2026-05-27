@@ -1,5 +1,6 @@
 import React from "react"
 import { Company, EntityTypes } from "@/app/types"
+import { CATEGORY_COLORS } from "@/utils/categories"
 
 interface CompanyCardProps {
   company: EntityTypes
@@ -49,7 +50,9 @@ export default function CompanyCard({ company }: CompanyCardProps) {
       {/* Category & subcategory tags */}
       <div className="flex flex-wrap gap-2">
         {primaryCategory && (
-          <span className="text-xs font-medium px-3 py-1 rounded-full bg-teal-700 text-white">
+          <span
+            className={`text-xs font-medium px-3 py-1 rounded-full ${CATEGORY_COLORS[primaryCategory]?.active ?? "bg-gray-200"} `}
+          >
             {primaryCategory}
           </span>
         )}
@@ -64,7 +67,9 @@ export default function CompanyCard({ company }: CompanyCardProps) {
       </div>
       <div>
         {otherSubcategories && (
-          <span className="text-xs font-medium px-3 py-1 rounded-full bg-teal-700 text-white">
+          <span
+            className={`text-xs font-medium px-3 py-1 rounded-full ${CATEGORY_COLORS[primaryCategory]?.subcategory_active_bg ?? "bg-gray-200"} `}
+          >
             {otherSubcategories}
           </span>
         )}

@@ -101,10 +101,9 @@ export default function EntitiesContainer() {
               const isLoaderRow = virtualRow.index > rowCount - 1
 
               const startIndex = virtualRow.index * itemsPerRow
-              const rowItems = filteredRows.slice(
-                startIndex,
-                startIndex + itemsPerRow,
-              )
+              const rowItems = filteredRows
+                .filter((item) => item.Category !== null)
+                .slice(startIndex, startIndex + itemsPerRow)
 
               return (
                 <div
@@ -123,9 +122,12 @@ export default function EntitiesContainer() {
                   {isLoaderRow ? (
                     <p className="col-span-2 text-center">Loading more...</p>
                   ) : (
-                    rowItems?.map((company) => (
-                      <CompanyCard key={Math.random()} company={company} />
-                    ))
+                    rowItems?.map((company) => {
+                      if (!company.Category) return null
+                      return (
+                        <CompanyCard key={Math.random()} company={company} />
+                      )
+                    })
                   )}
                 </div>
               )

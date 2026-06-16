@@ -6,6 +6,8 @@ import { FilterState } from "../types"
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query"
 import { useVirtualizer } from "@tanstack/react-virtual"
 
+import Loader from "@/app/components/Loader"
+
 export default function EntitiesContainer() {
   const [filters, setFilters] = useState<FilterState>({
     search: "",
@@ -16,7 +18,7 @@ export default function EntitiesContainer() {
     country: "",
   })
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery({
       queryKey: ["entities", filters],
       queryFn: async ({ pageParam = 1 }) => {
@@ -135,8 +137,13 @@ export default function EntitiesContainer() {
               )
             })}
           </div>
+          {isLoading && (
+            <div className="flex justify-center items-center py-10">
+              <Loader size={60} color="#5A24EC" />
+            </div>
+          )}
 
-          {filteredRows.length === 0 && !isFetchingNextPage && (
+          {filteredRows.length === 0 && !isFetchingNextPage && !isLoading && (
             <p className="text-gray-400 text-center py-10">
               No companies found.
             </p>

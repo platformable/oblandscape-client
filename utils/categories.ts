@@ -173,13 +173,13 @@ export const CATEGORY_COLORS: Record<
     ],
   },
   "Banking Operations": {
-    active: "bg-[#FF9031] text-white border-[#FF9031]",
-    inactive: "border-[#FF9031] text-[#FF9031] hover:border-[#FF9031]",
-    subcategory_active_bg: "bg-[#FFE8D5] border-[#FF9031] text-[#FF9031]",
+    active: "bg-[#B79609] text-white border-[#B79609]",
+    inactive: "border-[#B79609] text-[#B79609] hover:border-[#B79609]",
+    subcategory_active_bg: "bg-[#F4EED6] border-[#B79609] text-[#B79609]",
     subcategory_active_text: "text-white",
-    subcategory_active_border: "border-[#FF9031]",
+    subcategory_active_border: "border-[#B79609]",
     subcategory_inactive_bg:
-      "bg-white border-[#FF9031] text-[#FF9031] hover:bg-[#FF9031] hover:text-white",
+      "bg-white border-[#B79609] text-[#B79609] hover:bg-[#B79609] hover:text-white",
     subcategory_inactive_text: "text-gray-600",
     subcategory_inactive_border: "border-gray-300",
     subcategories: ["Digital and Open Banking enablement"],

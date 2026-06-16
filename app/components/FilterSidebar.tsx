@@ -137,12 +137,9 @@ export default function FilterSidebar({
         </button> */}
       </div>
 
-      <div className="flex flex-col gap-5">
-        <label
-          htmlFor="country"
-          className="text-xs uppercase font-semibold mb-1 block"
-        >
-          Filter by Country
+      <div className="flex flex-col gap-2">
+        <label htmlFor="country" className="text-xs uppercase font-semibold  ">
+          Filter by Country Operating
         </label>
         <select
           id="country"

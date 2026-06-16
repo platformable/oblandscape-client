@@ -29,14 +29,14 @@ body {
   color: var(--foreground);
   font-size: 1em;
   font-family: "Poppins", sans-serif;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-#scrollable-container {
+/* #scrollable-container {
   min-height: 340px;
   overflow-y: scroll;
 
-  /*   background : #F5F6F9; */
+
 }
 
 #scrollable-container::-webkit-scrollbar {
@@ -49,4 +49,17 @@ body {
   background: #300037;
 
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+} */
+
+/* Filter Sidebar Scrollbar */
+aside::-webkit-scrollbar {
+  width: 6px;
+}
+aside::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+aside::-webkit-scrollbar-thumb {
+  background: #300037;
+  border-radius: 10px;
 }

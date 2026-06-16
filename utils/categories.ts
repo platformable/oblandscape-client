@@ -138,7 +138,7 @@ export const CATEGORY_COLORS: Record<
       "Property development and management",
     ],
   },
-  "Block Chain": {
+  "Blockchain/Crypto": {
     active: "bg-[#E7877C] text-white border-[#E7877C]",
     inactive: "border-[#E7877C] text-[#E7877C] hover:border-[#E7877C]",
     subcategory_active_bg: "bg-[#FFE2DE] border-[#E7877C] text-[#E7877C]",
@@ -184,7 +184,7 @@ export const CATEGORY_COLORS: Record<
     subcategory_inactive_border: "border-gray-300",
     subcategories: ["Digital and Open Banking enablement"],
   },
-  "Market Enable And Provision": {
+  "Market Enablement and Provision": {
     active: "bg-[#7F61C2] text-white border-[#7F61C2]",
     inactive: "border-[#7F61C2] text-[#7F61C2] hover:border-[#7F61C2]",
     subcategory_active_bg: "bg-[#F4EFFF] border-[#7F61C2] text-[#7F61C2]",

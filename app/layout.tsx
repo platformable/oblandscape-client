@@ -13,13 +13,14 @@ export const metadata: Metadata = {
     default: "Smart Finance Landscape",
     template: "%s | Smart Finance Landscape",
   },
-  description: "",
+  description:
+    "Explore a global landscape of banks, fintechs, and financial aggregators.",
   openGraph: {
     type: "website",
     siteName: "Smart Finance Landscape",
     title: "Smart Finance Landscape",
     description:
-      "Discover exclusive deals and offers powered by The Smart Finance Ecosystem.",
+      "Explore a global landscape of banks, fintechs, and financial aggregators.",
     url: siteUrl,
     images: [
       {
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Smart Finance Landscape",
     description:
-      "Discover exclusive deals and offers powered by The Smart Finance Ecosystem.",
+      "Explore a global landscape of banks, fintechs, and financial aggregators.",
     images: [shareImg],
   },
 }

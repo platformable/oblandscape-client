@@ -73,7 +73,7 @@ export default function FilterSidebar({
   }) */
 
   return (
-    <aside className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col gap-5 min-w-[260px] max-w-xs w-full sticky top-8 self-start max-h-[calc(100vh-6rem)] overflow-y-auto">
+    <aside className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col gap-5 min-w-[260px] max-w-xs w-full block md:sticky top-8 self-start max-h-[calc(100vh-6rem)] overflow-y-auto">
       {/* Search */}
       <div className="flex justify-end text-end ">
         <button

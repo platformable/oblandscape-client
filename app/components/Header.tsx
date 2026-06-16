@@ -9,9 +9,9 @@ export default function Header() {
   return (
     <header
       id="header"
-      className={`relative z-10 bg-white shadow-lg py-3 ${styles.headerBg}`}
+      className={`relative z-10 bg-white shadow-lg py-1 ${styles.headerBg}`}
     >
-      <nav className="container flex flex-wrap items-center justify-between mx-auto py-3">
+      <nav className="container flex flex-wrap items-center justify-between mx-auto py-1">
         <Link href="/" className="flex items-center space-x-3 ">
           <img src="/logo.svg" className="" alt="Smart Finance logo" />
         </Link>

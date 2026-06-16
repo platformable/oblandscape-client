@@ -61,7 +61,7 @@ export default function EntitiesContainer() {
   const rowVirtualizer = useVirtualizer({
     count: hasNextPage ? rowCount + 1 : rowCount,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 200,
+    estimateSize: () => 170,
     overscan: 5,
   })
 
@@ -118,13 +118,14 @@ export default function EntitiesContainer() {
                     top: 0,
                     left: 0,
                     width: "100%",
+                    height: `${virtualRow.size}px`,
                     transform: `translateY(${virtualRow.start}px)`,
                     //transform: `translateY(120px)`,
                     paddingBottom: "16px",
                   }}
                 >
                   {isLoaderRow ? (
-                    <p className="col-span-2 text-center">Loading more...</p>
+                    <Loader size={60} color="#5A24EC" className="mx-auto" />
                   ) : (
                     rowItems?.map((company) => {
                       if (!company.Category) return null

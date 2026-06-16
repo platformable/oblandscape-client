@@ -13,12 +13,7 @@ export default function Header() {
     >
       <nav className="container flex flex-wrap items-center justify-between mx-auto py-3">
         <Link href="/" className="flex items-center space-x-3 ">
-          {/* <img
-            src="/logo_top2.svg"
-            className="w-56 md:w-full h-14"
-            alt="APIDays"
-          /> */}
-          <h3 className="font-extrabold text-xl">Open Banking Landscape</h3>
+          <img src="/logo.svg" className="" alt="Smart Finance logo" />
         </Link>
         <button
           onClick={() => {

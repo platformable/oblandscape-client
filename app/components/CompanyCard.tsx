@@ -49,7 +49,7 @@ export default function CompanyCard({ company }: CompanyCardProps) {
 
       {/* Category & subcategory tags */}
       <div className="flex flex-wrap gap-2">
-        {primaryCategory && (
+        {primaryCategory && company.EntityType !== "Bank" && (
           <span
             className={`text-xs font-medium px-3 py-1 rounded-full ${CATEGORY_COLORS[primaryCategory]?.active ?? "bg-gray-200"} `}
           >
@@ -66,7 +66,7 @@ export default function CompanyCard({ company }: CompanyCardProps) {
         ))} */}
       </div>
       <div>
-        {otherSubcategories && (
+        {otherSubcategories && company.EntityType !== "Bank" && (
           <span
             className={`text-xs font-medium px-3 py-1 rounded-full ${CATEGORY_COLORS[primaryCategory]?.subcategory_active_bg ?? "bg-gray-200"} `}
           >

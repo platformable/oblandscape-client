@@ -57,7 +57,7 @@ export default function EntitiesContainer() {
   const rowVirtualizer = useVirtualizer({
     count: hasNextPage ? rowCount + 1 : rowCount,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 220,
+    estimateSize: () => 200,
     overscan: 5,
   })
 
@@ -86,15 +86,15 @@ export default function EntitiesContainer() {
 
         <section
           ref={parentRef}
-          className="flex-1 overflow-auto bg-white rounded-lg shadow-inner p-4"
+          className="flex-1 overflow-auto  rounded-lg pr-5"
           id="scrollable-container"
         >
           <div
             style={{
-              // height: `${rowVirtualizer.getTotalSize()}px`,
+              height: `${rowVirtualizer.getTotalSize()}px`,
               width: "100%",
               position: "relative",
-              backgroundColor: "#ffffff",
+              //backgroundColor: "#ffffff",
             }}
           >
             {virtualItems?.map((virtualRow) => {

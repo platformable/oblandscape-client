@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { FilterState } from "@/app/types"
 import { useQuery } from "@tanstack/react-query"
 import { CATEGORY_COLORS } from "@/utils/categories"
+import { countries } from "@/utils/countries"
 
 interface FilterSidebarProps {
   filters: FilterState
@@ -77,18 +78,26 @@ export default function FilterSidebar({
       <div className="flex justify-end text-end ">
         <button
           className=" cursor-pointer text-xs uppercase font-bold"
-          onClick={() => set({ search: "", types: [], role: "" })}
+          onClick={() => set({ search: "", types: [], role: "", country: "" })}
         >
           X Clear filters
         </button>
       </div>
-      <div className="relative flex gap-2 items-center">
+
+      <div className="relative  gap-2 items-center border-b border-gray-200 pb-5">
+        <label
+          htmlFor="search"
+          className="text-xs  uppercase font-semibold mb-1 block"
+        >
+          Search by
+        </label>
         <input
+          id="search"
           type="text"
           placeholder="Search Companies..."
           value={filters.search}
           onChange={(e) => set({ search: e.currentTarget.value })}
-          className="w-full border border-[#DFD4FC] rounded-md px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[#DFD4FC] placeholder:text-gray-400 pr-8"
+          className="w-full border border-[#DFD4FC] bg-[#FAF7FE] rounded-md px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[#DFD4FC] placeholder:text-gray-400 pr-8 "
         />
         {filters.search && (
           <button
@@ -120,12 +129,36 @@ export default function FilterSidebar({
             </svg>
           </button>
         )}
-        {/*     <button
+        {/*  <button
           //onClick={() => getSingleEntity()}
           className=" bg-[#641FD0] text-white rounded-md px-4 py-2 text-sm font-semibold hover:bg-[#4b1399]"
         >
           Search
         </button> */}
+      </div>
+
+      <div className="flex flex-col gap-5">
+        <label
+          htmlFor="country"
+          className="text-xs uppercase font-semibold mb-1 block"
+        >
+          Filter by Country
+        </label>
+        <select
+          id="country"
+          value={filters.country}
+          onChange={(e) => set({ country: e.target.value })}
+          className="w-full border border-[#DFD4FC] bg-[#FAF7FE] rounded-md px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-[#DFD4FC] placeholder:text-gray-400"
+        >
+          <option value="" className="">
+            All countries
+          </option>
+          {countries.map((country) => (
+            <option key={country["alpha-2"]} value={country["alpha-2"]}>
+              {country.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Type */}

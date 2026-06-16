@@ -13,6 +13,7 @@ export default function EntitiesContainer() {
     role: "",
     category: "All",
     subcategories: [],
+    country: "",
   })
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -27,6 +28,7 @@ export default function EntitiesContainer() {
           ...(filters.subcategories.length > 0 && {
             subcategory: filters.subcategories.join(","),
           }),
+          ...(filters.country && { country: filters.country }),
         })
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_SERVER_URL}/api/entities?${queryParams}`,

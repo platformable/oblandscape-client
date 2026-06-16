@@ -14,6 +14,7 @@ export interface FilterState {
   role: string
   category: string
   subcategories: string[]
+  country: string
 }
 
 export interface EntityTypes {
